@@ -202,8 +202,14 @@
     transition: opacity 0.4s ease;
   }
   
+  /* Se elimina el efecto de hover para todos los productos */
   .producto:hover:before {
-    opacity: 0.5;
+    opacity: 0;
+  }
+  
+  /* Estilo para eliminar el efecto de hover en un producto específico */
+  .producto.sin-hover:hover:before {
+    opacity: 0 !important;
   }
   
   .producto-imagen {
