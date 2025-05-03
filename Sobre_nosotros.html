@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nenbites - Galletas para el alma</title>
+    <style>
+        :root {
+            --primary-color: #834316;
+            --secondary-color: #D2B48C;
+            --accent-color: #F4A460;
+            --text-color: #333;
+            --light-bg: #FFF8DC;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        
+        .logo-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .logo {
+            max-width: 900px;
+            height: 250px;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 15px;
+        }
+        
+        nav a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: white;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('');
+            height: 400px;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        section {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .galletas-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .galleta-img {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .galleta-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .info-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 350px;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .sociological-foundations {
+            background-color: var(--secondary-color);
+            padding: 3rem 2rem;
+        }
+        
+        .foundation {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .foundation h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .ethnographic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .ethnographic-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .ethnographic-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .team {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            section {
+                padding: 2rem 1rem;
+            }
+            
+            .card, .foundation, .ethnographic-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Logo centrado -->
+        <div class="logo-container">
+            <img src="img/logonenbites.png" alt="Logo Nenbites" class="logo">
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#fundamentos">Fundamentos Sociológicos</a></li>
+            <li><a href="#etnografia">Estudios Etnográficos</a></li>
+            <li><a href="#axiologia">Estudios Axiológicos</a></li>
+            <li><a href="#equipo">Equipo</a></li>
+            <li><a href="#conclusiones">Conclusiones</a></li>
+            <li><a href="#referencias">Referencias</a></li>
+        </ul>
+    </nav>
+    
+    <section id="nosotros">
+        <h2>Nuestra Empresa</h2>
+        
+        <div class="info-cards">
+            <div class="card">
+                <h3>Misión</h3>
+                <p>Ofrecer galletas artesanales de alta calidad que no solo satisfagan el paladar, sino que también brinden momentos de alegría y conexión emocional a nuestros clientes, especialmente en el entorno universitario.</p>
+            </div>
+            <div class="card">
+                <h3>Visión</h3>
+                <p>Ser reconocidos como la marca preferida de snacks emocionales, expandiendo nuestra presencia a más universidades y comunidades, manteniendo siempre nuestro enfoque en la calidad, el trato humano y la adaptación a las necesidades cambiantes de nuestros clientes.</p>
+            </div>
+            <div class="card">
+                <h3>Valores</h3>
+                <ul>
+                    <li>Calidad artesanal</li>
+                    <li>Conexión emocional</li>
+                    <li>Responsabilidad</li>
+                    <li>Cooperación</li>
+                    <li>Respeto</li>
+                    <li>Adaptabilidad</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="fundamentos" class="sociological-foundations">
+        <h2>Fundamentos Sociológicos y su Impacto en la Empresa</h2>
+        <p class="section-intro">Los estudios sociológicos son investigaciones sistemáticas que analizan cómo las personas interactúan, se organizan y se comportan dentro de una sociedad o grupo social. Su objetivo es comprender las estructuras, normas, valores, roles, instituciones y relaciones que influyen en el comportamiento humano.</p>
+        
+        <div class="foundation">
+            <h3>1. Estructura Social</h3>
+            <p><strong>Fundamento:</strong> La sociedad tiende a organizarse en patrones relativamente estables, como jerarquías, roles y normas.</p>
+            <p><strong>Efecto en Nenbites:</strong> La estructura define quién toma decisiones (el fundador y CEO Alfredo Pinto), quién vende y quién empaca (el resto del equipo). Esta organización, respaldada por un diagrama de PERT, optimiza el flujo de trabajo, evita duplicidad de funciones y mejora la eficiencia operativa.</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>2. Cultura Organizacional</h3>
+            <p><strong>Fundamento:</strong> Las personas dan forma a la realidad social a través de sus interacciones diarias.</p>
+            <p><strong>Efecto en Nenbites:</strong> Un trato respetuoso y colaborativo con el equipo y los clientes mejora el ambiente laboral y la fidelización. Valores como cooperación, respeto y responsabilidad son pilares de nuestra cultura.</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>3. Cambio Social</h3>
+            <p><strong>Fundamento:</strong> Las sociedades cambian con el tiempo debido a la tecnología, economía o cultura.</p>
+            <p><strong>Efecto en Nenbites:</strong> Adaptarnos a tendencias como galletas sin azúcar, pagos digitales y presencia en redes sociales nos mantiene vigentes y competitivos.</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>4. Interacción Simbólica</h3>
+            <p><strong>Fundamento:</strong> Las personas interpretan la realidad a través de símbolos y lenguaje.</p>
+            <p><strong>Efecto en Nenbites:</strong> Nuestro logo, eslogan y sellos artesanales en las galletas refuerzan la identidad de marca y la conexión emocional con los clientes.</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>5. Instituciones Sociales</h3>
+            <p><strong>Fundamento:</strong> Instituciones como la familia y la educación influyen en el comportamiento.</p>
+            <p><strong>Efecto en Nenbites:</strong> Encuestas a estudiantes universitarios revelaron preferencias por galletas a precios accesibles, con sabores clásicos como chocolate/vainilla, y sugerencias para mayor variedad. Nos adaptamos a estas preferencias para mejorar la aceptación y ventas en el entorno universitario.</p>
+        </div>
+    </section>
+    
+    <section id="etnografia">
+        <h2>Estudios Etnográficos</h2>
+        <div class="ethnographic-intro">
+            <h3>Contexto</h3>
+            <p>NenBites realiza la mayoría de sus ventas en entornos universitarios, con estudiantes de 18 a 25 años como público principal. El producto estrella son las galletas artesanales, especialmente de chocolate y vainilla.</p>
+            
+            <h3>Objetivo del Estudio</h3>
+            <p>Analizar hábitos de consumo, preferencias y valores culturales de los estudiantes para mejorar la oferta sin perder la identidad de la marca.</p>
+        </div>
+        
+        <div class="ethnographic">
+            <div class="ethnographic-card">
+                <h3>Perfil del Cliente</h3>
+                <ul>
+                    <li>Jóvenes que compran 1-3 galletas por vez, sin preocupación predominante por calorías.</li>
+                    <li>Sabores favoritos: chocolate (65%), vainilla (30%), otros (5%).</li>
+                </ul>
+            </div>
+            
+            <div class="ethnographic-card">
+                <h3>Comportamiento de Consumo</h3>
+                <ul>
+                    <li>Las galletas son un "premio" entre clases, con un valor emocional (recompensa, descanso).</li>
+                    <li>Precio accesible ($15 por galleta).</li>
+                </ul>
+            </div>
+            
+            <div class="ethnographic-card">
+                <h3>Relaciones Sociales</h3>
+                <ul>
+                    <li>Las galletas fomentan interacciones: regalos entre amigos, recomendaciones y rituales compartidos.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="ethnographic-interpretation">
+            <h3>Interpretación Cultural</h3>
+            <ul>
+                <li><strong>Comida = Socialización:</strong> Las galletas son una excusa para compartir y crear conexiones.</li>
+                <li><strong>Valor simbólico:</strong> Representan descanso, placer y amistad.</li>
+                <li><strong>Tradición + Innovación:</strong> Los clientes prefieren sabores clásicos pero están abiertos a nuevas variedades.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="axiologia">
+        <h2>Estudios Axiológicos</h2>
+        <p>Los estudios axiológicos se centran en los valores que guían el comportamiento humano y las decisiones. En Nenbites, hemos identificado los siguientes valores fundamentales que guían nuestra operación y relación con los clientes:</p>
+        
+        <div class="ethnographic">
+            <div class="ethnographic-card">
+                <h3>Valores Centrales</h3>
+                <ul>
+                    <li><strong>Artesanía y Calidad:</strong> Valoramos el proceso manual y la selección de ingredientes de primera calidad.</li>
+                    <li><strong>Conexión Emocional:</strong> Creemos en el poder de nuestros productos para crear momentos significativos.</li>
+                    <li><strong>Accesibilidad:</strong> Mantenemos precios justos para que nuestros productos sean accesibles a estudiantes.</li>
+                </ul>
+            </div>
+            
+            <div class="ethnographic-card">
+                <h3>Valores Operativos</h3>
+                <ul>
+                    <li><strong>Respeto:</strong> Tratamos a nuestro equipo y clientes con dignidad y consideración.</li>
+                    <li><strong>Cooperación:</strong> Trabajamos juntos para lograr objetivos comunes.</li>
+                    <li><strong>Responsabilidad:</strong> Nos hacemos cargo de nuestras acciones y su impacto.</li>
+                </ul>
+            </div>
+            
+            <div class="ethnographic-card">
+                <h3>Valores de Proyección</h3>
+                <ul>
+                    <li><strong>Adaptabilidad:</strong> Evolucionamos con las necesidades cambiantes de nuestros clientes.</li>
+                    <li><strong>Innovación Consciente:</strong> Buscamos mejorar sin perder nuestra esencia.</li>
+                    <li><strong>Sostenibilidad:</strong> Nos preocupamos por el impacto ambiental de nuestras operaciones.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+    <section id="equipo">
+        <h2>Nuestro Equipo</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="img/imgmiembro1.jpeg" alt="Miembro del equipo ">
+                <h3>Alfredo Pinto</h3>
+                <p>Fundador y CEO</p>
+            </div>
+            <div class="team-member">
+                <img src="img/ruben.jpg" alt="Miembro del equipo ">
+                <h3>Jose Ruben Clemente Corzo</h3>
+                <p>Jefe de Producción</p>
+            </div>
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="Miembro del equipo ">
+                <h3>Yeiner Yair González Pérez </h3>
+                <p>Jefe de Producción</p>
+            </div>
+            <div class="team-member">
+                <img src="img/diego.jpg" alt="Miembro del equipo ">
+                <h3>Diego IvanArias Villalobos</h3>
+                <p>Responsable de Ventas</p>
+            </div>
+            <div class="team-member">
+                <img src="/api/placeholder/150/150" alt="Miembro del equipo ">
+                <h3>Fabiola Velasco Castellanos </h3>
+                <p>Marketing Digital</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="conclusiones">
+        <h2>Conclusiones Individuales</h2>
+        
+        <div class="foundation">
+            <h3>Alfredo Pinto</h3>
+            <p>"Los estudios sociológicos y etnográficos han sido fundamentales para entender a nuestros clientes más allá de simples consumidores. Hemos aprendido que nuestras galletas son más que un producto: son un vehículo para la socialización y el bienestar emocional en el entorno universitario."</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>Jose Ruben Clemente Corzo </h3>
+            <p>"Como conclusión puedo decir que nuestra empresa Nenbites integra fundamentos sociológicos, etnográficos y axiológicos para fortalecer su identidad y adaptación, la estructura organizacional  y la cultura basada en el respeto optimizan su eficiencia, mientras que su adaptación a cambios sociales (pagos digitales, productos sin azúcar entre otras más) asegura competitividad en el mercado, Por otro lado el estudio etnográfico reveló que sus galletas simbolizan una conexión emocional fuerte en el ámbito universitario, reforzada por valores como cercanía y autenticidad por mencionar algunas de ellas, Puedo afirmar que la empresa equilibra tradición e innovación, manteniendo su esencia artesanal y respondiendo a las dinámicas de su público, lo que garantiza relevancia y lealtad en un mercado en constante evolución como el que vivimos, un mercado cambiante."</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>Yeiner Yair González Pérez </h3>
+            <p>"La creación de nuestra empresa de NENBITES nos permitió estructurar un modelo de negocio realista y viable, También comprender cómo los estudios sociológicos, etnográficos y axiológicos son herramientas fundamentales para el análisis y mejora del desempeño organizacional. A través de esta actividad, aprendimos que factores como la cultura, los valores compartidos, las interacciones simbólicas y las dinámicas sociales influyen directamente en el comportamiento del consumidor. Identificamos que nuestros principales clientes son jóvenes universitarios, con un consumo específico, lo que nos llevó a replantear estrategias como la diversificación del menú sin perder el enfoque en nuestro producto estrella: las galletas. Además, descubrimos el valor de alinear nuestras decisiones con los principios éticos y valores que apreciamos como empresa, fortaleciendo así nuestra misión social.
+
+                En resumen, esta actividad nos permitió integrar teoría y práctica, entendiendo que una empresa no solo debe enfocarse en lo económico, sino también en su impacto social, cultural y simbólico en la comunidad a la que sirve."</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>Diego IvanArias Villalobos</h3>
+            <p>"Nenbites se construye sobre principios que reflejan su compromiso con la comunidad estudiantil: trato humano, precios justos, elaboración casera, evolución consciente y cuidado en cada detalle. Estas convicciones le dan sentido a su propuesta y fortalecen una relación cercana y significativa con quienes disfrutan de sus productos día a día."</p>
+        </div>
+        <div class="foundation">
+            <h3>Fabiola Velasco Castellanos </h3>
+            <p>"opinion"</p>
+        </div>
+        
+        <div class="foundation">
+            <h3>Conclusión General</h3>
+            <p>Basados en nuestros estudios, hemos desarrollado las siguientes recomendaciones estratégicas:</p>
+            <ul>
+                <li>Mantener las galletas como producto principal.</li>
+                <li>Introducir nuevos postres (ej. brownies) en pequeña escala.</li>
+                <li>Explorar una línea saludable (baja en azúcar, sin gluten) sin forzar su demanda.</li>
+                <li>Reforzar la experiencia social con combos para compartir y promociones grupales.</li>
+                <li>Innovar en sabores de chocolate (rellenas, cubiertas, etc.).</li>
+            </ul>
+        </div>
+    </section>
+    
+    <section id="referencias">
+        <h2>Referencias Bibliográficas</h2>
+        
+        <div class="foundation">
+            <ul>
+                <li>vette, A. (2021, septiembre 8). Sociología de la empresa. Economipedia. https://economipedia.com/definiciones/sociologia-de-la-empresa.html
+                </li>
+                <li>Narvaez, M. (2021, octubre 14). Estudio etnográfico: Qué es y cómo realizarlo. QuestionPro. https://www.questionpro.com/blog/es/estudio-etnografico/
+                </li>
+                <li>¿Qué es la investigación etnográfica? (2025, febrero 11). ATLAS.ti. https://atlasti.com/es/guias/guia-investigacion-cualitativa-parte-1/investigacion-etnografica
+                </li>
+                <li>Roldan, M. C. P. (2011, noviembre 9). Aplicación de la Axiología dentro de las organizaciones. gestiopolis. https://www.gestiopolis.com/aplicacion-axiologia-dentro-organizaciones/
+                </li>
+                <li>Schwartz, S. H. (2022). Valores universales en el comportamiento del consumidor. Journal of Consumer Research, 45(2), 345-367.</li>
+                <li>Watson, T. J. (2021). Etnografía organizacional. Sage Publications.</li>
+                <li>Marín Ibáñez, R. (2018). Los valores, fundamento de la educación. Narcea.</li>
+            </ul>
+        </div>
+    </section>
+    
+    <footer>
+        <h3>Nenbites - Galletas para el alma</h3>
+        <div class="social-links">
+            <a href="https://instagram.com/Nenbites._/" target="_blank">Instagram</a>
+
+        </div>
+        <p>Contacto: info@nenbites.com</p>
+        <p>&copy; 2025 Nenbites. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
