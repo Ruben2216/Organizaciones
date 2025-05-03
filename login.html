@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <div class="back-to-index">
+        <button onclick="location.href='index.html'">Volver al Inicio</button>
+    </div>
     <div class="login-container">
         <div class="login-form">
             <div class="close-button">X</div>
@@ -27,6 +30,20 @@
                     <span class="eye-icon eye-icon-login">&#128065;</span>
                 </div>
                 <button class="sign-up-button-register">Regístrate</button>
+            </div>
+        </div>
+        <div class="register-form hidden">
+            <h2>Crea tu Cuenta</h2>
+            <p>Completa los campos para registrarte</p>
+            <div class="form-fields">
+                <input type="text" placeholder="Nombre" id="register-name" required>
+                <input type="text" placeholder="Apellido" id="register-lastname" required>
+                <input type="email" placeholder="Correo Electrónico" id="register-email" required>
+                <div class="password-container">
+                    <input type="password" placeholder="Contraseña" id="register-password" required>
+                    <span class="eye-icon eye-icon-register">&#128065;</span>
+                </div>
+                <button class="sign-up-button-register">Crear Cuenta</button>
             </div>
         </div>
         <div class="new-here-section">

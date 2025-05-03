@@ -5,7 +5,7 @@
             "nombre": "choco chpips",
             "precio": "$15",
             "descripcion": "Galleta con chispas de chocolate artesanal, horneada con ingredientes orgánicos.",
-            "imagen": "/api/placeholder/300/200",
+            "imagen": "https://recetasdecocina.elmundo.es/wp-content/uploads/2015/09/cookies-receta.jpg",
             "categoria": "temporada"
         },
         {
@@ -13,7 +13,7 @@
             "nombre": "Black Star",
             "precio": "$15",
             "descripcion": "Deliciosa galleta de chocolate con chispas de chocolate blanco y trozos de nuez.",
-            "imagen": "/api/placeholder/300/200",
+            "imagen": "https://www.bettycrocker.lat/mx/wp-content/uploads/sites/2/2020/12/BCmexico-recipe-galletas-arcoirirs.png",
             "categoria": "Cchocolate"
         },
         {
@@ -21,7 +21,7 @@
             "nombre": "Golden dream",
             "precio": "$15",
             "descripcion": "Suave galleta de vainilla con chispas de chocolate blanco y esencia de canela.",
-            "imagen": "/api/placeholder/300/200",
+            "imagen": "https://i.blogs.es/576dcf/galletas-de-chocolate/1366_2000.jpg",
             "categoria": "Cvainilla"
         }
     ]
