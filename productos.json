@@ -1,0 +1,28 @@
+{
+    "productos": [
+        {
+            "id": 1,
+            "nombre": "choco chpips",
+            "precio": "$15",
+            "descripcion": "Galleta con chispas de chocolate artesanal, horneada con ingredientes orgánicos.",
+            "imagen": "/api/placeholder/300/200",
+            "categoria": "temporada"
+        },
+        {
+            "id": 2,
+            "nombre": "Black Star",
+            "precio": "$15",
+            "descripcion": "Deliciosa galleta de chocolate con chispas de chocolate blanco y trozos de nuez.",
+            "imagen": "/api/placeholder/300/200",
+            "categoria": "Cchocolate"
+        },
+        {
+            "id": 3,
+            "nombre": "Golden dream",
+            "precio": "$15",
+            "descripcion": "Suave galleta de vainilla con chispas de chocolate blanco y esencia de canela.",
+            "imagen": "/api/placeholder/300/200",
+            "categoria": "Cvainilla"
+        }
+    ]
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Producto | Nenbites</title>
+    <link rel="stylesheet" href="stylec.css">
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Copia el mismo navbar de index.html -->
+        <div class="dropdown">
+            <button class="menu-button">☰ Menú</button>
+            <div class="dropdown-content">
+                <a href="index.html">Página Principal</a>
+                <!-- ... otros enlaces ... -->
+            </div>
+        </div>
+        <a href="index.html" class="logo">Nenbites</a>
+        <button class="menu-button">🛒 Carrito (0)</button>
+    </nav>
+
+    <div class="detalle-producto" id="detalle-container">
+        <!-- Los datos se cargarán aquí con JavaScript -->
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Nenbites</h3>
+                <p>Horneamos con ingredientes frescos y naturales para ofrecerte las mejores galletas artesanales.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Enlaces</h3>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Sobre Nosotros</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>📞 9612753555</li>
+                    <li>✉️ contacto@nenbites.com</li>
+                    <li>🏠 Tuxtla Gutiérrez, Chiapas</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 Nenbites. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const detalleContainer = document.getElementById('detalle-container');
+
+            if (!productId) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            // Cargar datos del JSON
+            const response = await fetch('productos.json');
+            const data = await response.json();
+            const producto = data.productos.find(p => p.id == productId);
+
+            if (!producto) {
+                window.location.href = "index.html";
+                return;
+            }
+
+            // Mostrar el producto
+            detalleContainer.innerHTML = `
+                <div class="imagen-producto">
+                    <img src="${producto.imagen}" alt="${producto.nombre}">
+                </div>
+                <div class="info-producto">
+                    <h1>${producto.nombre}</h1>
+                    <p class="precio-detalle">${producto.precio}</p>
+                    <p class="descripcion-detalle">${producto.descripcion}</p>
+                    <button class="boton-comprar">Añadir al carrito</button>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nenbites - Panel de Edición</title>
+    <style>
+        /* Reutilizamos los estilos principales del sistema */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary-color: #c87941;
+            --secondary-color: #e09e67;
+            --dark-color: #533a2e;
+            --light-color: #f9f3e9;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background-color: #fff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .title {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 0.7rem;
+        }
+
+        .title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            min-height: 100px;
+        }
+
+        .edit-section {
+            margin-bottom: 3rem;
+        }
+
+        .edit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .edit-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--info-color);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .badge-high {
+            background-color: var(--danger-color);
+        }
+
+        .badge-medium {
+            background-color: var(--warning-color);
+            color: #333;
+        }
+
+        .badge-low {
+            background-color: var(--success-color);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .btn-sm {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-success {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .edit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="#" class="logo">Nenbites</a>
+        <div>
+            <a href="index.html" class="btn btn-primary">Volver al Dashboard</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h1 class="title">Panel de Edición Completa</h1>
+            
+            <!-- Sección de Estadísticas Editables -->
+            <div class="edit-section">
+                <h2 class="title">Estadísticas</h2>
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <form id="edit-stats-pending">
+                            <div class="form-group">
+                                <label for="pending-orders">Pedidos Pendientes</label>
+                                <input type="number" id="pending-orders" name="pending-orders" value="15" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="pending-trend">Tendencia</label>
+                                <select id="pending-trend" name="trend" required>
+                                    <option value="up" selected>↑ Aumentando</option>
+                                    <option value="down">↓ Disminuyendo</option>
+                                    <option value="same">→ Sin cambios</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="pending-percent">Porcentaje</label>
+                                <input type="text" id="pending-percent" name="percent" value="20%" required>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="edit-stats-completed">
+                            <div class="form-group">
+                                <label for="completed-orders">Pedidos Completados</label>
+                                <input type="number" id="completed-orders" name="completed-orders" value="42" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-trend">Tendencia</label>
+                                <select id="completed-trend" name="trend" required>
+                                    <option value="up" selected>↑ Aumentando</option>
+                                    <option value="down">↓ Disminuyendo</option>
+                                    <option value="same">→ Sin cambios</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="completed-percent">Porcentaje</label>
+                                <input type="text" id="completed-percent" name="percent" value="15%" required>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="edit-stats-priority">
+                            <div class="form-group">
+                                <label for="high-priority">Prioridad Alta</label>
+                                <input type="number" id="high-priority" name="high-priority" value="4" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority-trend">Tendencia</label>
+                                <select id="priority-trend" name="trend" required>
+                                    <option value="up">↑ Aumentando</option>
+                                    <option value="down" selected>↓ Disminuyendo</option>
+                                    <option value="same">→ Sin cambios</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority-diff">Diferencia</label>
+                                <input type="text" id="priority-diff" name="diff" value="2" required>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="edit-stats-reminders">
+                            <div class="form-group">
+                                <label for="active-reminders">Recordatorios Activos</label>
+                                <input type="number" id="active-reminders" name="active-reminders" value="8" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminders-trend">Tendencia</label>
+                                <select id="reminders-trend" name="trend" required>
+                                    <option value="up">↑ Aumentando</option>
+                                    <option value="down">↓ Disminuyendo</option>
+                                    <option value="same" selected>→ Sin cambios</option>
+                                </select>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de Recordatorios Editables -->
+            <div class="edit-section">
+                <h2 class="title">Recordatorios</h2>
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <form id="edit-reminder-1">
+                            <div class="form-group">
+                                <label for="reminder-title-1">Título</label>
+                                <input type="text" id="reminder-title-1" name="title" value="Preparar pedido de galletas chocolate chips" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-date-1">Fecha de Entrega</label>
+                                <input type="date" id="reminder-date-1" name="date" value="2025-04-30" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-order-1">Número de Pedido</label>
+                                <input type="text" id="reminder-order-1" name="order" value="#NB2504-001" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-client-1">Cliente</label>
+                                <input type="text" id="reminder-client-1" name="client" value="Laura Martínez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-priority-1">Prioridad</label>
+                                <select id="reminder-priority-1" name="priority" required>
+                                    <option value="high" selected>Alta</option>
+                                    <option value="medium">Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="edit-reminder-2">
+                            <div class="form-group">
+                                <label for="reminder-title-2">Título</label>
+                                <input type="text" id="reminder-title-2" name="title" value="Preparar pedido galletas variadas" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-date-2">Fecha de Entrega</label>
+                                <input type="date" id="reminder-date-2" name="date" value="2025-04-30" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-order-2">Número de Pedido</label>
+                                <input type="text" id="reminder-order-2" name="order" value="#NB2504-003" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-client-2">Cliente</label>
+                                <input type="text" id="reminder-client-2" name="client" value="Carlos Rodríguez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-priority-2">Prioridad</label>
+                                <select id="reminder-priority-2" name="priority" required>
+                                    <option value="high">Alta</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="new-reminder">
+                            <div class="form-group">
+                                <label for="new-reminder-title">Título</label>
+                                <input type="text" id="new-reminder-title" name="title" placeholder="Nuevo recordatorio" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-reminder-date">Fecha de Entrega</label>
+                                <input type="date" id="new-reminder-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-reminder-order">Número de Pedido</label>
+                                <input type="text" id="new-reminder-order" name="order" placeholder="#NBXXXX-XXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-reminder-client">Cliente</label>
+                                <input type="text" id="new-reminder-client" name="client" placeholder="Nombre del cliente" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-reminder-priority">Prioridad</label>
+                                <select id="new-reminder-priority" name="priority" required>
+                                    <option value="high">Alta</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sección de Pedidos Editables -->
+            <div class="edit-section">
+                <h2 class="title">Pedidos</h2>
+                <div class="edit-grid">
+                    <div class="edit-item">
+                        <form id="edit-order-008">
+                            <div class="form-group">
+                                <label for="order-id-008">Número de Pedido</label>
+                                <input type="text" id="order-id-008" name="order-id" value="#NB2504-008" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-date-008">Fecha de Entrega</label>
+                                <input type="date" id="order-date-008" name="order-date" value="2025-05-05" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-client-008">Cliente</label>
+                                <input type="text" id="order-client-008" name="client" value="María Fernández" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-priority-008">Prioridad</label>
+                                <select id="order-priority-008" name="priority" required>
+                                    <option value="high" selected>Alta</option>
+                                    <option value="medium">Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-desc-008">Descripción</label>
+                                <textarea id="order-desc-008" name="description" required>4 docenas de Black Star, 2 docenas de Golden Dream</textarea>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="edit-order-007">
+                            <div class="form-group">
+                                <label for="order-id-007">Número de Pedido</label>
+                                <input type="text" id="order-id-007" name="order-id" value="#NB2504-007" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-date-007">Fecha de Entrega</label>
+                                <input type="date" id="order-date-007" name="order-date" value="2025-05-03" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-client-007">Cliente</label>
+                                <input type="text" id="order-client-007" name="client" value="Pedro Sánchez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-priority-007">Prioridad</label>
+                                <select id="order-priority-007" name="priority" required>
+                                    <option value="high">Alta</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="order-desc-007">Descripción</label>
+                                <textarea id="order-desc-007" name="description" required>2 docenas de Mallow Melt</textarea>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="edit-item">
+                        <form id="new-order">
+                            <div class="form-group">
+                                <label for="new-order-id">Número de Pedido</label>
+                                <input type="text" id="new-order-id" name="order-id" placeholder="#NBXXXX-XXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-order-date">Fecha de Entrega</label>
+                                <input type="date" id="new-order-date" name="order-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-order-client">Cliente</label>
+                                <input type="text" id="new-order-client" name="client" placeholder="Nombre del cliente" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-order-priority">Prioridad</label>
+                                <select id="new-order-priority" name="priority" required>
+                                    <option value="high">Alta</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="low">Baja</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="new-order-desc">Descripción</label>
+                                <textarea id="new-order-desc" name="description" placeholder="Detalles del pedido" required></textarea>
+                            </div>
+                            <div class="action-buttons">
+                                <button type="submit" class="btn btn-sm btn-success">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Aquí iría el JavaScript para manejar los formularios
+        // Por ejemplo:
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Lógica para guardar los cambios
+                alert('Cambios guardados correctamente');
+                // En una implementación real, aquí harías una petición AJAX
+                // o actualizarías el estado de la aplicación
+            });
+        });
+        
+        // También podrías añadir lógica para:
+        // - Eliminar elementos
+        // - Validar formularios
+        // - Actualizar la vista en tiempo real
+    </script>
+</body>
+</html>
